@@ -1,10 +1,12 @@
 import npm = require('npm');
+const devnull = require('dev-null');
 import {
     IInstall
 } from './types';
 
 const loadParams = {
-    loglevel: 'silent'
+    loglevel: 'silent',
+    progress: false
 };
 
 export default function (params: IInstall) {return new Promise((resolve, reject) => {

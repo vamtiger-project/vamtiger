@@ -18,6 +18,10 @@ export declare enum ProjectOptions {
     type = "type",
     name = "name"
 }
+export declare enum Interface {
+    'api' = "API",
+    'cli' = "CLI"
+}
 export interface IProject {
     type: Project;
     name: string;

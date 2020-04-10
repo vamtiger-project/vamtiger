@@ -7,17 +7,18 @@
         "vamtiger": "build/vamtiger.js"
     },
     "scripts": {
-        "test": "npm run build && npm run cucumber",
+        "test": "npm run build && npm run copy-features && npm run cucumber",
         "copy-features": "vamtiger-copy --source source/test/features --destination build/test/features --exclude step_definitions",
         "cucumber": "cucumber-js -f node_modules/cucumber-pretty build/test/features",
         "mocha": "mocha build/test --recursive",
         "build": "npm run clean && tsc && npm run copy-features",
         "tsc": "tsc",
         "commit": "npm run bundle && vamtiger-node-typescript-commit --push --publish --buildScript bundle",
-        "clean-bundle": "vamtiger-remove -d build -p \"(vamtiger)\\\\.(js(.map)?|d.ts)\"",
+        "clean-bundle": "vamtiger-remove -d build -p \"(vamtiger|project|types)\\\\.(js(.map)?|d.ts)\" && rm -rf build/test",
         "clean": "rm -rf build/*",
-        "bundle-source": "vamtiger-bundle-typescript --relativePath --entryFilePath source/index.ts --bundleFilePath build/index.js --format cjs --sourcemap true --copySourceMap --minify --bin",
-        "bundle": "npm test && npm run clean && npm run build && npm run bundle-source && npm run clean-bundle",
+        "bundle-source": "vamtiger-bundle-typescript --relativePath --entryFilePath source/vamtiger.ts --bundleFilePath build/vamtiger.js --format cjs --sourcemap true --copySourceMap --minify --bin",
+        "bundle-source-module": "vamtiger-bundle-typescript --relativePath --entryFilePath source/project.ts --bundleFilePath build/project.js --format cjs --sourcemap true --copySourceMap --minify",
+        "bundle": "npm test && npm run clean && npm run build && npm run bundle-source && npm run bundle-source-module && npm run clean-bundle",
         "watch": "npm run bundle -- --watch"
     },
     "keywords": [
@@ -50,9 +51,14 @@
         "vamtiger-remove": "0.0.6"
     },
     "dependencies": {
+        "dev-null": "^0.1.1",
         "npm": "^6.14.4",
         "vamtiger-copy": "0.0.9",
         "vamtiger-create-directory": "0.0.5",
         "vamtiger-project-php-laravel": "0.0.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vamtiger-project/vamtiger.git"
     }
 }

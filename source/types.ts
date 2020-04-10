@@ -24,6 +24,11 @@ export enum ProjectOptions {
     name = 'name'
 }
 
+export enum Interface {
+    'api' = 'API',
+    'cli' = 'CLI'
+}
+
 export interface IProject {
     type: Project;
     name: string;

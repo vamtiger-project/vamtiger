@@ -4,7 +4,7 @@ import { Given, Then, When, World, Before, After, setDefaultTimeout } from 'cucu
 import createFolder from 'vamtiger-create-directory';
 import remove from 'vamtiger-remove';
 import bash from 'vamtiger-bash';
-import { Command, Project, Result, ignore } from '../../../types';
+import { Command, Project, Result, Interface, ignore } from '../../../types';
 import project from '../../../project';
 
 interface IContext extends World {
@@ -23,6 +23,10 @@ const projectFolder = resolvePath(
 const bashOptions = {
     cwd: projectFolder
 }
+const bashProgram = resolvePath(
+    __dirname,
+    '../../../..'
+);
 
 setDefaultTimeout(60 * 1000);
 
@@ -30,13 +34,7 @@ Before(async function () {
     await createFolder(projectFolder).catch(ignore);
 });
 
-After(async function () {
-    const removeParams = {
-        folder: projectFolder
-    };
-
-    await remove(removeParams);
-})
+After(clean);
 
 Given('{string} command', function (this: IContext, command: Command) {
     this.command = command;
@@ -50,21 +48,35 @@ Given('project name: {string}', function (this: IContext, name: string) {
     this.name = name;
 });
 
-When('running the command', async function (this: IContext) {
+When(`running the command via the ${Interface.api}`, async function (this: IContext) {
     const params = this.type && this.name && {
         type: this.type,
         name: this.name,
         destination: projectFolder
     };
-    const cliCommand = `node . ${this.command} --type ${this.type} --name ${this.name}-cli`;
     const apiResult = params && await project(params);
-    // const cliResult = await bash(cliCommand, bashOptions);
 
     this.apiResult = apiResult?.toString();
-    // this.cliResult = cliResult.toString();
-})
+
+    await clean();
+});
+
+When(`running the command via the ${Interface.cli}`, async function () {
+    const cliCommand = `node ${bashProgram} ${this.command} --type ${this.type} --name ${this.name}-cli`;
+    const cliResult = await bash(cliCommand, bashOptions);
+
+    this.cliResult = cliResult.toString();
+});
 
 Then('a new project should be created', function (this: IContext) {
     expect(this.apiResult).to.equal(Result.createdProject);
-    // expect(this.cliResult).to.equal(Result.createdProject);
+    expect(this.cliResult).to.match(new RegExp(Result.createdProject, 'm'));
 });
+
+async function clean() {
+    const removeParams = {
+        folder: projectFolder
+    };
+
+    await remove(removeParams);
+}

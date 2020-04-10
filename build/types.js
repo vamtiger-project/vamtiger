@@ -26,6 +26,11 @@ var ProjectOptions;
     ProjectOptions["type"] = "type";
     ProjectOptions["name"] = "name";
 })(ProjectOptions = exports.ProjectOptions || (exports.ProjectOptions = {}));
+var Interface;
+(function (Interface) {
+    Interface["api"] = "API";
+    Interface["cli"] = "CLI";
+})(Interface = exports.Interface || (exports.Interface = {}));
 function ignore(params) {
     return Result.ignored;
 }

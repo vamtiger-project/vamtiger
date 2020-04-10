@@ -6,7 +6,8 @@ Feature: Create a new web project?
         Given "<command>" command
         And project type: "<type>"
         And project name: "<name>"
-        When running the command
+        When running the command via the API
+        And running the command via the CLI
         Then a new project should be created
 
         Examples:
