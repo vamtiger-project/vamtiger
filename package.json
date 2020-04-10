@@ -1,6 +1,6 @@
 {
     "name": "vamtiger",
-    "version": "0.0.8-0",
+    "version": "0.0.8",
     "description": "Web Project based utility.",
     "main": "build/vamtiger",
     "types": "build/types.d.ts",
