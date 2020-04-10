@@ -47,7 +47,7 @@
         "vamtiger-bundle-text": "0.0.8",
         "vamtiger-bundle-typescript": "0.0.36",
         "vamtiger-get-directory-content": "0.0.35",
-        "vamtiger-node-typescript-commit": "^0.13.1",
+        "vamtiger-node-typescript-commit": "^0.14.1",
         "vamtiger-remove": "0.0.6"
     },
     "dependencies": {
