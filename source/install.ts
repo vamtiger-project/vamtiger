@@ -1,5 +1,5 @@
-import npm = require('npm');
-const devnull = require('dev-null');
+import NPM = require('npm');
+const npm = require('npm') as typeof NPM;
 import {
     IInstall
 } from './types';

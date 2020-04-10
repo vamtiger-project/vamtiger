@@ -1,4 +1,4 @@
-Feature: Create a new web project?
+Feature: Create a new web project
     Defined web projects can be created
     e.g vamtiger project project-type
 

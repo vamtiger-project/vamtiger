@@ -3,6 +3,7 @@
     "version": "0.0.3-0",
     "description": "Web Project based utility.",
     "main": "build/vamtiger",
+    "types": "build/types.d.ts",
     "bin": {
         "vamtiger": "build/vamtiger.js"
     },
@@ -29,7 +30,6 @@
     ],
     "author": "Vamtiger Immortalles",
     "license": "MIT",
-    "types": "build/index.d.ts",
     "devDependencies": {
         "@types/chai": "^4.2.11",
         "@types/cucumber": "^6.0.1",
@@ -47,7 +47,7 @@
         "vamtiger-bundle-text": "0.0.8",
         "vamtiger-bundle-typescript": "0.0.36",
         "vamtiger-get-directory-content": "0.0.35",
-        "vamtiger-node-typescript-commit": "^0.10.1",
+        "vamtiger-node-typescript-commit": "^0.11.1",
         "vamtiger-remove": "0.0.6"
     },
     "dependencies": {
