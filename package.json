@@ -53,6 +53,7 @@
     "dependencies": {
         "dev-null": "^0.1.1",
         "npm": "^6.14.4",
+        "vamtiger-argv": "^1.2.6",
         "vamtiger-copy": "0.0.9",
         "vamtiger-create-directory": "0.0.5",
         "vamtiger-project-php-laravel": "0.0.3"
