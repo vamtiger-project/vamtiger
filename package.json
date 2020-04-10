@@ -1,6 +1,6 @@
 {
     "name": "vamtiger",
-    "version": "0.0.7",
+    "version": "0.0.8-0",
     "description": "Web Project based utility.",
     "main": "build/vamtiger",
     "types": "build/types.d.ts",
@@ -54,6 +54,7 @@
         "dev-null": "^0.1.1",
         "npm": "^6.14.4",
         "vamtiger-argv": "^1.2.6",
+        "vamtiger-commandline-help": "0.0.4",
         "vamtiger-copy": "0.0.9",
         "vamtiger-create-directory": "0.0.5",
         "vamtiger-project-php-laravel": "0.0.3"
