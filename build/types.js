@@ -26,11 +26,20 @@ var ProjectOptions;
     ProjectOptions["type"] = "type";
     ProjectOptions["name"] = "name";
 })(ProjectOptions = exports.ProjectOptions || (exports.ProjectOptions = {}));
+var HiddenProjectOptions;
+(function (HiddenProjectOptions) {
+    HiddenProjectOptions["cliInstallOptional"] = "cliInstallOptional";
+})(HiddenProjectOptions = exports.HiddenProjectOptions || (exports.HiddenProjectOptions = {}));
 var Interface;
 (function (Interface) {
     Interface["api"] = "API";
     Interface["cli"] = "CLI";
 })(Interface = exports.Interface || (exports.Interface = {}));
+var PhpLaravelPath;
+(function (PhpLaravelPath) {
+    PhpLaravelPath["testsFeauture"] = "tests/Feature";
+    PhpLaravelPath["behatYml"] = "behat.yml";
+})(PhpLaravelPath = exports.PhpLaravelPath || (exports.PhpLaravelPath = {}));
 function ignore(params) {
     return Result.ignored;
 }

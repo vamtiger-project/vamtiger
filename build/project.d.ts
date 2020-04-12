@@ -1,2 +1,2 @@
-import { IProject, Result } from './types';
-export default function (params: IProject): Promise<Result>;
+import { IProject } from './types';
+export default function (params: IProject): Promise<import("./types").Result>;
