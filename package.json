@@ -1,35 +1,55 @@
 {
     "name": "vamtiger",
-    "version": "0.0.8-0",
+    "author": "Vamtiger Immortalles",
     "description": "Web Project based utility.",
-    "main": "build/vamtiger",
-    "types": "build/types.d.ts",
-    "bin": {
-        "vamtiger": "build/vamtiger.js"
-    },
-    "scripts": {
-        "test": "npm run build && npm run copy-features && npm run cucumber",
-        "copy-features": "vamtiger-copy --source source/test/features --destination build/test/features --exclude step_definitions",
-        "cucumber": "cucumber-js -f node_modules/cucumber-pretty build/test/features",
-        "mocha": "mocha build/test --recursive",
-        "build": "npm run clean && tsc && npm run copy-features",
-        "tsc": "tsc",
-        "commit": "npm run bundle && vamtiger-node-typescript-commit --push --publish --buildScript bundle",
-        "clean-bundle": "vamtiger-remove -d build -p \"(vamtiger|project|types)\\\\.(js(.map)?|d.ts)\" && rm -rf build/test",
-        "clean": "rm -rf build/*",
-        "bundle-source": "vamtiger-bundle-typescript --relativePath --entryFilePath source/vamtiger.ts --bundleFilePath build/vamtiger.js --format cjs --sourcemap true --copySourceMap --minify --bin",
-        "bundle-source-module": "vamtiger-bundle-typescript --relativePath --entryFilePath source/project.ts --bundleFilePath build/project.js --format cjs --sourcemap true --copySourceMap --minify",
-        "bundle": "npm test && npm run clean && npm run build && npm run bundle-source && npm run bundle-source-module && npm run clean-bundle",
-        "watch": "npm run bundle -- --watch"
-    },
     "keywords": [
         "vamtiger",
         "web",
         "webproject",
         "project"
     ],
-    "author": "Vamtiger Immortalles",
     "license": "MIT",
+    "version": "0.0.8-0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vamtiger-project/vamtiger.git"
+    },
+    "main": "build/vamtiger",
+    "types": "build/types.d.ts",
+    "bin": {
+        "vamtiger": "build/vamtiger.js"
+    },
+    "scripts": {
+        "test": "npm run build && npm run cucumber",
+        "copy-features": "vamtiger-copy --source source/test/features --destination build/test/features --exclude step-definitions",
+        "cucumber": "cucumber-js -f node_modules/cucumber-pretty build/test/features --cliInstallOptional",
+        "cucumber-js": "cucumber-js",
+        "mocha": "mocha build/test --recursive",
+        "build": "npm run clean && npm run bundle-bash && npm run build-ts && npm run copy-features",
+        "build-ts": "tsc",
+        "tsc": "tsc",
+        "commit": "npm run bundle && vamtiger-node-typescript-commit --push --publish --buildScript bundle",
+        "clean-bundle": "vamtiger-remove -d build -p \"(vamtiger|project|types)\\\\.(js(.map)?|d.ts)\" && rm -rf build/test",
+        "clean": "rm -rf build/*",
+        "bundle": "npm test && npm run clean && npm run build && npm run bundle-source && npm run clean-bundle",
+        "bundle-source": "npm run bundle-source-module && npm run bundle-source-module-project",
+        "bundle-source-module": "vamtiger-bundle-typescript --relativePath --entryFilePath source/vamtiger.ts --bundleFilePath build/vamtiger.js --format cjs --sourcemap true --copySourceMap --minify --bin",
+        "bundle-source-module-project": "vamtiger-bundle-typescript --relativePath --entryFilePath source/project.ts --bundleFilePath build/project.js --format cjs --sourcemap true --copySourceMap --minify",
+        "bundle-bash": "vamtiger-bundle-text --folder source/bash --filter sh$ --name index",
+        "watch": "vamtiger-watch --folder source --extension feature --script copy-features --extension ts --script build-ts --extension sh --script bundle-bash"
+    },
+    "dependencies": {
+        "npm": "^6.14.4",
+        "vamtiger-argv": "^1.2.6",
+        "vamtiger-bash": "0.0.25",
+        "vamtiger-commandline-help": "0.0.4",
+        "vamtiger-copy": "0.0.9",
+        "vamtiger-copy-file": "0.0.9",
+        "vamtiger-create-directory": "0.0.5",
+        "vamtiger-get-directory-content": "0.0.35",
+        "vamtiger-get-file-text": "0.0.6",
+        "vamtiger-remove": "0.0.6"
+    },
     "devDependencies": {
         "@types/chai": "^4.2.11",
         "@types/cucumber": "^6.0.1",
@@ -41,26 +61,14 @@
         "cucumber-pretty": "^6.0.0",
         "mocha": "^7.1.1",
         "typescript": "^3.8.3",
-        "vamtiger-bash": "0.0.25",
         "vamtiger-bundle-css-next": "^0.4.1",
         "vamtiger-bundle-html": "^0.2.8",
         "vamtiger-bundle-text": "0.0.8",
         "vamtiger-bundle-typescript": "0.0.36",
-        "vamtiger-get-directory-content": "0.0.35",
         "vamtiger-node-typescript-commit": "^0.14.1",
-        "vamtiger-remove": "0.0.6"
+        "vamtiger-watch": "^1.3.1"
     },
-    "dependencies": {
-        "dev-null": "^0.1.1",
-        "npm": "^6.14.4",
-        "vamtiger-argv": "^1.2.6",
-        "vamtiger-commandline-help": "0.0.4",
-        "vamtiger-copy": "0.0.9",
-        "vamtiger-create-directory": "0.0.5",
+    "optionalDependencies": {
         "vamtiger-project-php-laravel": "0.0.3"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/vamtiger-project/vamtiger.git"
     }
 }

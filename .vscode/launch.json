@@ -12,7 +12,10 @@
             "args": [
                 "-f",
                 "${workspaceRoot}/node_modules/cucumber-pretty",
-                "${workspaceRoot}/build/test/features"
+                "${workspaceRoot}/build/test/features",
+                "--cliInstallOptional",
+                "--timeout",
+                "999999"
             ],
             "outFiles": [
                 "${workspaceRoot}/build/**/*.js"

@@ -2,9 +2,17 @@ import { resolve as resolvePath } from 'path';
 import { expect } from 'chai';
 import { Given, Then, When, World, Before, After, setDefaultTimeout } from 'cucumber';
 import createFolder from 'vamtiger-create-directory';
+import getFolderContent from 'vamtiger-get-directory-content';
 import remove from 'vamtiger-remove';
 import bash from 'vamtiger-bash';
-import { Command, Project, Result, Interface, ignore } from '../../../types';
+import Args from 'vamtiger-argv/build/main';
+import {
+    Command,
+    Project,
+    Result,
+    Interface,
+    HiddenProjectOptions,
+    ignore } from '../../../types';
 import project from '../../../project';
 
 interface IContext extends World {
@@ -15,6 +23,7 @@ interface IContext extends World {
     cliResult?: string;
 }
 
+const args = new Args();
 const projectFolderName = 'project';
 const projectFolder = resolvePath(
     __dirname,
@@ -28,7 +37,7 @@ const bashProgram = resolvePath(
     '../../../..'
 );
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout((60 * 1000) * 5);
 
 Before(async function () {
     await createFolder(projectFolder).catch(ignore);
@@ -40,21 +49,23 @@ Given('{string} command', function (this: IContext, command: Command) {
     this.command = command;
 });
 
-Given('project type: {string}', function (this: IContext, type: Project) {
+Given('project type is {string}', function (this: IContext, type: Project) {
     this.type = type;
 });
 
-Given('project name: {string}', function (this: IContext, name: string) {
+Given('project name is {string}', function (this: IContext, name: string) {
     this.name = name;
 });
 
 When(`running the command via the ${Interface.api}`, async function (this: IContext) {
-    const params = this.type && this.name && {
+    const apiResult = this.type && this.name && await project({
         type: this.type,
         name: this.name,
-        destination: projectFolder
-    };
-    const apiResult = params && await project(params);
+        destination: projectFolder,
+        // this is to silence summary npm output postn install
+        // for better readability of test results
+        cliInstallOptional: args.has(HiddenProjectOptions.cliInstallOptional)
+    });
 
     this.apiResult = apiResult?.toString();
 
@@ -62,13 +73,17 @@ When(`running the command via the ${Interface.api}`, async function (this: ICont
 });
 
 When(`running the command via the ${Interface.cli}`, async function () {
-    const cliCommand = `node ${bashProgram} ${this.command} --type ${this.type} --name ${this.name}-cli`;
+    const cliCommand = `node ${bashProgram} ${this.command} --type ${this.type} --name ${this.name}`;
     const cliResult = await bash(cliCommand, bashOptions);
 
     this.cliResult = cliResult.toString();
 });
 
-Then('a new project should be created', function (this: IContext) {
+Then('a new project should be created', async function (this: IContext) {
+    const folderContent = await getFolderContent(projectFolder);
+    const createdProject = Boolean(this.name && folderContent.includes(this.name));
+
+    expect(createdProject).to.be.true;
     expect(this.apiResult).to.equal(Result.createdProject);
     expect(this.cliResult).to.match(new RegExp(Result.createdProject, 'm'));
 });

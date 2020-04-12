@@ -1,11 +1,11 @@
 Feature: Create a new web project
     Defined web projects can be created
-    e.g vamtiger project project-type
+    e.g vamtiger project --type project-type --name project-name
 
-    Scenario Outline: Project: PHP - Laravel
+    Scenario Outline: vamtiger <command> --type <type> --name <name>
         Given "<command>" command
-        And project type: "<type>"
-        And project name: "<name>"
+        And project type is "<type>"
+        And project name is "<name>"
         When running the command via the API
         And running the command via the CLI
         Then a new project should be created

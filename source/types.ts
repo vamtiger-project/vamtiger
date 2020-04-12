@@ -24,21 +24,41 @@ export enum ProjectOptions {
     name = 'name'
 }
 
+export enum HiddenProjectOptions {
+    cliInstallOptional = 'cliInstallOptional'
+}
+
 export enum Interface {
     'api' = 'API',
     'cli' = 'CLI'
 }
 
+export enum PhpLaravelPath {
+    testsFeauture = 'tests/Feature',
+    behatYml = 'behat.yml'
+}
 export interface IProject {
     type: Project;
     name: string;
     project?: string;
     destination?: string;
     cli?: boolean;
+    cliInstallOptional?: boolean;
+}
+
+export interface IProjectPhpLaravel {
+    name: string;
+    source: string;
+    destination: string;
 }
 
 export interface IInstall {
-    project: string;
+    projects: string[];
+    cliInstallOptional?: boolean;
+}
+
+export interface IInstalledProject {
+    path: string;
 }
 
 export function ignore(params: any) {
