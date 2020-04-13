@@ -53,6 +53,7 @@ var Interface;
 (function (Interface) {
     Interface["api"] = "API";
     Interface["cli"] = "CLI";
+    Interface["module"] = "Module";
 })(Interface = exports.Interface || (exports.Interface = {}));
 var PhpLaravelPath;
 (function (PhpLaravelPath) {

@@ -38,7 +38,8 @@ export declare enum HiddenProjectOptions {
 }
 export declare enum Interface {
     'api' = "API",
-    'cli' = "CLI"
+    'cli' = "CLI",
+    'module' = "Module"
 }
 export declare enum PhpLaravelPath {
     testsFeauture = "tests/Feature",
