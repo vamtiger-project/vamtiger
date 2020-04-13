@@ -1,15 +1,17 @@
 {
     "name": "vamtiger",
     "author": "Vamtiger Immortalles",
-    "description": "Web Project based utility.",
+    "description": "Web Development Utility",
     "keywords": [
         "vamtiger",
         "web",
         "webproject",
-        "project"
+        "webdevelopment",
+        "web-project",
+        "web-development"
     ],
     "license": "MIT",
-    "version": "0.0.9",
+    "version": "0.0.10-0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/vamtiger-project/vamtiger.git"
@@ -17,7 +19,8 @@
     "main": "build/vamtiger",
     "types": "build/types.d.ts",
     "bin": {
-        "vamtiger": "build/vamtiger.js"
+        "vamtiger": "build/vamtiger.js",
+        "vtgr": "build/vamtiger.js"
     },
     "scripts": {
         "test": "npm run build && npm run cucumber",
@@ -29,7 +32,7 @@
         "build-ts": "tsc",
         "tsc": "tsc",
         "commit": "npm run bundle && vamtiger-node-typescript-commit --push --publish --buildScript bundle",
-        "clean-bundle": "vamtiger-remove -d build -p \"(vamtiger|project|types)\\\\.(js(.map)?|d.ts)\" && rm -rf build/test",
+        "clean-bundle": "vamtiger-remove -d build -p \"(vamtiger|project|types)\\\\.(js(.map)?|d.ts)\"",
         "clean": "rm -rf build/*",
         "bundle": "npm test && npm run clean && npm run build && npm run bundle-source && npm run clean-bundle",
         "bundle-source": "npm run bundle-source-module && npm run bundle-source-module-project",
@@ -42,7 +45,7 @@
         "npm": "^6.14.4",
         "vamtiger-argv": "^1.2.6",
         "vamtiger-bash": "0.0.25",
-        "vamtiger-commandline-help": "0.0.4",
+        "vamtiger-commandline-help": "0.0.10",
         "vamtiger-copy": "0.0.9",
         "vamtiger-copy-file": "0.0.9",
         "vamtiger-create-directory": "0.0.5",
@@ -65,7 +68,7 @@
         "vamtiger-bundle-html": "^0.2.8",
         "vamtiger-bundle-text": "0.0.8",
         "vamtiger-bundle-typescript": "0.0.36",
-        "vamtiger-node-typescript-commit": "^0.14.1",
+        "vamtiger-node-typescript-commit": "^0.15.1",
         "vamtiger-watch": "^1.3.1"
     },
     "optionalDependencies": {

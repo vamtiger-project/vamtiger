@@ -1,22 +1,37 @@
 export declare enum Command {
+    help = "help",
     project = "project"
+}
+export declare enum CommandDescription {
+    help = "list commands",
+    project = "create a new project"
 }
 export declare enum Project {
     phpLaravel = "php-laravel"
+}
+export declare enum ProjectDescription {
+    phpLaravel = "PHP Laravel"
+}
+export declare enum ProjectExample {
+    phpLaravel = "vamtiger project --type php-laravel php-laravel-project"
 }
 export declare enum Result {
     createdProject = "Created Project",
     ignored = "Ignored"
 }
 export declare enum Prefix {
-    vamtigerProject = "vamtiger-project"
+    vamtigerProject = "vamtiger-project",
+    doubleDash = "--"
 }
 export declare enum StringConstant {
-    dash = "-"
+    dash = "-",
+    newline = "\n"
 }
 export declare enum ProjectOptions {
-    type = "type",
-    name = "name"
+    type = "type"
+}
+export declare enum ProjectOptionsDescription {
+    type = "Project type"
 }
 export declare enum HiddenProjectOptions {
     cliInstallOptional = "cliInstallOptional"
@@ -28,6 +43,15 @@ export declare enum Interface {
 export declare enum PhpLaravelPath {
     testsFeauture = "tests/Feature",
     behatYml = "behat.yml"
+}
+export declare enum CommandlineHelpTitle {
+    vamtiger = "VAMTIGER - Web Development Utility\nhttps://www.npmjs.com/package/vamtiger",
+    help = "Commands:",
+    project = "Project Options:",
+    projectType = "Project Types:"
+}
+export interface IStringObject {
+    [key: string]: string;
 }
 export interface IProject {
     type: Project;
