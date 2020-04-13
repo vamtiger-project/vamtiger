@@ -17,11 +17,9 @@ const createProject = {
 export default async function (params: IProject) {
     const { cliInstallOptional = false , cli = false } = params;
     const cliMessage = cli && [
-        '',
         CommandlineHelpTitle.vamtiger,
         '',
         Result.createdProject,
-        ''
     ].join(StringConstant.newline);
     const createCurrentProject = createProject[params.type] || ignore;
     const project = [
