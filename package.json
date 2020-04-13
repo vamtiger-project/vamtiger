@@ -1,7 +1,7 @@
 {
     "name": "vamtiger",
     "author": "Vamtiger Immortalles",
-    "description": "Web Development Utility",
+    "description": "Language Agnostic Web Development Utility",
     "keywords": [
         "vamtiger",
         "web",
@@ -11,7 +11,7 @@
         "web-development"
     ],
     "license": "MIT",
-    "version": "0.0.13",
+    "version": "0.0.14-0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/vamtiger-project/vamtiger.git"
@@ -32,7 +32,7 @@
         "build-ts": "tsc",
         "build-types": "npm run build-ts && npm run clean-build",
         "commit": "npm run bundle && vamtiger-node-typescript-commit --push --publish --buildScript bundle",
-        "clean-bundle": "vamtiger-remove -d build -p \"/(vamtiger|types)\\\\.(js(.map)?|d.ts)\"",
+        "clean-bundle": "vamtiger-remove -d build -p \"/(vamtiger|types|project)\\\\.(js(.map)?|d.ts)\"",
         "clean-build": "vamtiger-remove -d build -p \"(types)\\\\.(js(.map)?|d.ts)\"",
         "clean": "rm -rf build/*",
         "bundle": "npm test && npm run bundle-source && npm run clean-bundle",
