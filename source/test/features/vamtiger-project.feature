@@ -6,7 +6,7 @@ Feature: Create a new web project
         Given "<command>" command
         And project type is "<type>"
         And project name is "<name>"
-        When running the command via the API
+        When running the command via the Module
         And running the command via the CLI
         Then a new project should be created
 

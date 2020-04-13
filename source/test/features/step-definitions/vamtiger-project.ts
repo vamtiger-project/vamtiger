@@ -58,7 +58,7 @@ Given('project name is {string}', function (this: IContext, name: string) {
     this.name = name;
 });
 
-When(`running the command via the ${Interface.api}`, async function (this: IContext) {
+When(`running the command via the ${Interface.module}`, async function (this: IContext) {
     const apiResult = this.type && this.name && await project({
         type: this.type,
         name: this.name,

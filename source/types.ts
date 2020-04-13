@@ -49,7 +49,8 @@ export enum HiddenProjectOptions {
 
 export enum Interface {
     'api' = 'API',
-    'cli' = 'CLI'
+    'cli' = 'CLI',
+    'module' = 'Module'
 }
 
 export enum PhpLaravelPath {
