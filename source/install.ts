@@ -22,7 +22,7 @@ async function cliInstallOptional(params: IInstall) {
     const { projects } = params;
     const currentProjects = projects.join(' ');
     const command = `${bashScript['npm-install-save-optional.sh'].trim()} --prefix ${projectFolder} ${currentProjects}`;
-    const result = await bash(command);
+    const result = await bash(command).catch(error => error);
 
     return result.toString();
 }
