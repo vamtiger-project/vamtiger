@@ -1,5 +1,5 @@
 # [VAMTIGER](https://www.npmjs.com/package/vamtiger)
-[VAMTIGER](https://www.npmjs.com/package/vamtiger) is a web development utility.
+[VAMTIGER](https://www.npmjs.com/package/vamtiger) is a language agnostic web development utility.
 
 ## Installation
 [VAMTIGER](https://www.npmjs.com/package/vamtiger) can be installed globally:
