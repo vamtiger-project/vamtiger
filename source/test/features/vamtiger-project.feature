@@ -1,8 +1,8 @@
 Feature: Create a new web project
     Defined web projects can be created
-    e.g vamtiger project --type project-type --name project-name
+    e.g vamtiger project [--options] project-name
 
-    Scenario Outline: vamtiger <command> --type <type> --name <name>
+    Scenario Outline: vamtiger <command> --type <type> <name>
         Given "<command>" command
         And project type is "<type>"
         And project name is "<name>"

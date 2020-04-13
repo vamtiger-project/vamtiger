@@ -36,6 +36,7 @@ const bashProgram = resolvePath(
     __dirname,
     '../../../..'
 );
+const expectedResult = new RegExp(Result.createdProject, 'm');
 
 setDefaultTimeout((60 * 1000) * 5);
 
@@ -65,15 +66,15 @@ When(`running the command via the ${Interface.api}`, async function (this: ICont
         // this is to silence summary npm output postn install
         // for better readability of test results
         cliInstallOptional: args.has(HiddenProjectOptions.cliInstallOptional)
-    });
+    }) || '';
 
-    this.apiResult = apiResult?.toString();
+    this.apiResult = apiResult.toString();
 
     await clean();
 });
 
 When(`running the command via the ${Interface.cli}`, async function () {
-    const cliCommand = `node ${bashProgram} ${this.command} --type ${this.type} --name ${this.name}`;
+    const cliCommand = `node ${bashProgram} ${this.command} --type ${this.type} ${this.name}`;
     const cliResult = await bash(cliCommand, bashOptions);
 
     this.cliResult = cliResult.toString();
@@ -84,8 +85,8 @@ Then('a new project should be created', async function (this: IContext) {
     const createdProject = Boolean(this.name && folderContent.includes(this.name));
 
     expect(createdProject).to.be.true;
-    expect(this.apiResult).to.equal(Result.createdProject);
-    expect(this.cliResult).to.match(new RegExp(Result.createdProject, 'm'));
+    expect(this.apiResult).to.match(expectedResult);
+    expect(this.cliResult).to.match(expectedResult);
 });
 
 async function clean() {

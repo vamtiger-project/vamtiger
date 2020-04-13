@@ -4,7 +4,8 @@ import {
     IInstall
 } from './types';
 import {
-    npmApiInstallOptional
+    npmApiInstallOptional,
+    projectFolder
 } from './config';
 import bashScript from './bash';
 
@@ -20,7 +21,7 @@ export default function (params: IInstall) {
 async function cliInstallOptional(params: IInstall) {
     const { projects } = params;
     const currentProjects = projects.join(' ');
-    const command = `${bashScript['npm-install-save-optional.sh'].trim()} ${currentProjects}`;
+    const command = `${bashScript['npm-install-save-optional.sh'].trim()} --prefix ${projectFolder} ${currentProjects}`;
     const result = await bash(command);
 
     return result.toString();

@@ -1,8 +1,10 @@
 import {
     IProject,
     Project,
+    CommandlineHelpTitle,
     Prefix,
     StringConstant,
+    Result,
     ignore
 } from './types';
 import install from './install';
@@ -13,7 +15,14 @@ const createProject = {
 }
 
 export default async function (params: IProject) {
-    const { cliInstallOptional = false } = params;
+    const { cliInstallOptional = false , cli = false } = params;
+    const cliMessage = cli && [
+        '',
+        CommandlineHelpTitle.vamtiger,
+        '',
+        Result.createdProject,
+        ''
+    ].join(StringConstant.newline);
     const createCurrentProject = createProject[params.type] || ignore;
     const project = [
         Prefix.vamtigerProject,
@@ -21,12 +30,18 @@ export default async function (params: IProject) {
     ].join(StringConstant.dash);
     const installParams = createCurrentProject && {
         projects: [project],
-        cliInstallOptional
+        cliInstallOptional: cliInstallOptional || cli
     };
 
     if (installParams) {
         await install(installParams);
     }
 
-    return createCurrentProject({...params, project});
+    await createCurrentProject({...params, project});
+
+    if (cliMessage) {
+        console.log(cliMessage);
+    }
+
+    return Result.createdProject;
 }

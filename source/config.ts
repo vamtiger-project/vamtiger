@@ -7,5 +7,6 @@ export const projectFolder = resolvePath(
 
 export const npmApiInstallOptional = {
     'save-optional': true,
+    'no-audit': true,
     'prefix': projectFolder
 };

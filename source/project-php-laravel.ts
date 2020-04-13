@@ -9,7 +9,6 @@ import {
     IProject,
     IInstalledProject,
     IProjectPhpLaravel,
-    Result,
     PhpLaravelPath } from './types';
 import bashScript from './bash';
 
@@ -50,12 +49,6 @@ export default async function (params: IProject) {
     } else {
         await copy(copyParams);
     }
-
-    if (cli) {
-        console.log(Result.createdProject);
-    }
-
-    return Result.createdProject;
 }
 
 async function createProjectWithComposer(params: IProjectPhpLaravel) {

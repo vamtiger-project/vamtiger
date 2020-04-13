@@ -1,9 +1,23 @@
 export enum Command {
+    help = 'help',
     project = 'project'
+}
+
+export enum CommandDescription {
+    help = 'list commands',
+    project = 'create a new project'
 }
 
 export enum Project {
     phpLaravel = 'php-laravel'
+}
+
+export enum ProjectDescription {
+    phpLaravel = 'PHP Laravel'
+}
+
+export enum ProjectExample {
+    phpLaravel = 'vamtiger project --type php-laravel php-laravel-project'
 }
 
 export enum Result {
@@ -12,16 +26,21 @@ export enum Result {
 }
 
 export enum Prefix {
-    vamtigerProject = 'vamtiger-project'
+    vamtigerProject = 'vamtiger-project',
+    doubleDash = '--'
 }
 
 export enum StringConstant {
-    dash = '-'
+    dash = '-',
+    newline = '\n'
 }
 
 export enum ProjectOptions {
-    type = 'type',
-    name = 'name'
+    type = 'type'
+}
+
+export enum ProjectOptionsDescription {
+    type = 'Project type'
 }
 
 export enum HiddenProjectOptions {
@@ -37,6 +56,18 @@ export enum PhpLaravelPath {
     testsFeauture = 'tests/Feature',
     behatYml = 'behat.yml'
 }
+
+export enum CommandlineHelpTitle {
+    vamtiger = 'VAMTIGER - Web Development Utility\nhttps://www.npmjs.com/package/vamtiger',
+    help = 'Commands:',
+    project = 'Project Options:',
+    projectType = 'Project Types:'
+}
+
+export interface IStringObject {
+    [key: string]: string;
+}
+
 export interface IProject {
     type: Project;
     name: string;
@@ -66,6 +97,6 @@ export function ignore(params: any) {
 }
 
 export const errorMessage = {
-    noProjectTypeOptionSpecified: `No --${ProjectOptions.type} option specified (e.g. ${Prefix.vamtigerProject} ${Command.project} --${ProjectOptions.type} ${Project.phpLaravel} --${ProjectOptions.name} projec-name)`,
-    noProjectNameOptionSpecified: `No --${ProjectOptions.name} option specified (e.g. ${Prefix.vamtigerProject} ${Command.project} --${ProjectOptions.type} ${Project.phpLaravel} --${ProjectOptions.name} projec-name)`
+    noProjectTypeOptionSpecified: `No --${ProjectOptions.type} option specified (e.g. ${Prefix.vamtigerProject} ${Command.project} --${ProjectOptions.type} ${Project.phpLaravel} projec-name)`,
+    noProjectNameOptionSpecified: `No Project Name specified (e.g. ${Prefix.vamtigerProject} ${Command.project} --${ProjectOptions.type} ${Project.phpLaravel} projec-name)`
 };
